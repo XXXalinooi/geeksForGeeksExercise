@@ -63,6 +63,23 @@ public class BinaryTree {
         return left+right;
     }
 
+    public static int countNotLeafs(BinaryTreeNode head){
+        if(head == null){
+            return 0;
+        }
+        if(head.left == null && head.right == null){
+            return 0;
+        }
+        return 1+countNotLeafs(head.left) + countNotLeafs(head.right);
+    }
+
+    public static int countNumberOfNodes(BinaryTreeNode root) {
+        if(root == null){
+            return 0;
+        }
+        return countNumberOfNodes(root.left) + countNumberOfNodes(root.right) + 1;
+    }
+
     public static void main(String[] args) {
         BinaryTree tree = new BinaryTree();
         tree.root = new BinaryTreeNode(1);
@@ -71,6 +88,8 @@ public class BinaryTree {
         tree.root.left.left = new BinaryTreeNode(4);
         tree.root.left.right = new BinaryTreeNode(5);
         printPreorder(tree.root);
-        System.out.print(countLeafs(tree.root));
+        System.out.println(countLeafs(tree.root));
+        System.out.println(countNotLeafs(tree.root));
+        System.out.println(countNumberOfNodes(tree.root));
     }
 }
